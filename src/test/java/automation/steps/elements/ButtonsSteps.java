@@ -1,20 +1,22 @@
-package automation.base.steps;
+package automation.steps.elements;
 
+import automation.steps.BaseSteps;
 import org.example.automation.pages.elements.ElementsPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
-public class ButtonsComponentSteps extends BaseSteps {
+public class ButtonsSteps extends BaseSteps {
 
     private final ElementsPage elementsPage;
 
-    public ButtonsComponentSteps(WebDriver driver) {
+    public ButtonsSteps(WebDriver driver) {
         super(driver);
         this.elementsPage = new ElementsPage(driver);
     }
 
-    public void performDoubleClickButton() {
+    public ButtonsSteps performDoubleClickButton() {
         elementsPage.getButtonsComponent().clickDoubleClickButton();
+        return this;
     }
 
     public void verifyDoubleClickButtonMessage(String expectedMessage) {

@@ -1,5 +1,6 @@
-package automation.base.steps;
+package automation.steps.elements;
 
+import automation.steps.BaseSteps;
 import org.example.automation.pages.elements.ElementsPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
@@ -20,8 +21,9 @@ public class TextBoxSteps extends BaseSteps {
         return this;
     }
 
-    public void enterEmail(String email) {
+    public TextBoxSteps enterEmail(String email) {
         elementsPage.getTextBoxComponent().setEmail(email);
+        return this;
     }
 
     public void verifySubmittedDetails(String fullName, String email) {

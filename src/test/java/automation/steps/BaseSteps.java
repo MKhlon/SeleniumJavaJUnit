@@ -1,4 +1,4 @@
-package automation.base.steps;
+package automation.steps;
 
 import org.example.automation.pages.BasePage;
 import org.openqa.selenium.WebDriver;

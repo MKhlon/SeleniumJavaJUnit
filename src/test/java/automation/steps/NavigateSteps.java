@@ -1,8 +1,10 @@
-package automation.base.steps;
+package automation.steps;
 
+import automation.steps.elements.ButtonsSteps;
+import automation.steps.elements.CheckBoxSteps;
+import automation.steps.elements.TextBoxSteps;
 import org.example.automation.config.ConfigReader;
-import org.example.automation.pages.elements.ButtonsComponent;
-import org.example.automation.pages.elements.CheckBoxComponent;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -27,18 +29,18 @@ public class NavigateSteps extends BaseSteps {
         return new NavigateSteps(driver);
     }
 
-    public TextBoxSteps navigateToTextBox() {
+    public TextBoxSteps navigateToTextBoxComponent() {
         click(textBoxLink);
         return new TextBoxSteps(driver);
     }
 
-    public void navigateToCheckBox() {
+    public CheckBoxSteps navigateToCheckBoxComponent() {
         click(checkBoxLink);
-        new CheckBoxComponent(driver);
+        return new CheckBoxSteps(driver);
     }
 
-    public void navigateToButtonsComponent() {
+    public ButtonsSteps navigateToButtonsComponent() {
         click(buttonsLink);
-        new ButtonsComponent(driver);
+        return new ButtonsSteps(driver);
     }
 }

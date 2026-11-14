@@ -1,7 +1,7 @@
 package automation.tests.elements;
 
-import automation.base.steps.NavigateSteps;
-import automation.base.steps.TextBoxSteps;
+import automation.steps.NavigateSteps;
+import automation.steps.elements.TextBoxSteps;
 import automation.tests.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,10 +25,10 @@ public class TextBoxTest extends BaseTest {
 
        //When
        navigateSteps.navigateToElementsPage()
-               .navigateToTextBox()
+               .navigateToTextBoxComponent()
                .enterFullName(fullName)
-               .enterEmail(email);
-       navigateSteps.clickSubmit();
+               .enterEmail(email)
+               .clickSubmit();
 
        //Then
        textBoxSteps.verifySubmittedDetails(fullName, email);
