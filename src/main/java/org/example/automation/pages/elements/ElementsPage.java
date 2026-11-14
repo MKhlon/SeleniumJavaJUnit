@@ -1,15 +1,29 @@
 package org.example.automation.pages.elements;
 
-import lombok.Data;
 import org.example.automation.pages.BasePage;
+import org.openqa.selenium.WebDriver;
 
-@Data
 public class ElementsPage extends BasePage {
-   private final TextComponent textComponent;
+   private final TextBoxComponent textBoxComponent;
+   private final CheckBoxComponent checkBoxComponent;
    private final ButtonsComponent buttonsComponent;
 
-   public ElementsPage() {
-       this.textComponent = new TextComponent();
-       this.buttonsComponent = new ButtonsComponent();
+   public ElementsPage(WebDriver driver) {
+       super(driver);
+       this.textBoxComponent = new TextBoxComponent(driver);
+       this.checkBoxComponent = new CheckBoxComponent(driver);
+       this.buttonsComponent = new ButtonsComponent(driver);
+   }
+
+   public TextBoxComponent getTextBoxComponent() {
+       return textBoxComponent;
+   }
+
+   public CheckBoxComponent getCheckBoxComponent() {
+       return checkBoxComponent;
+   }
+
+   public ButtonsComponent getButtonsComponent() {
+       return buttonsComponent;
    }
 }

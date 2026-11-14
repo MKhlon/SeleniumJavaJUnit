@@ -12,20 +12,31 @@ public abstract class BaseTest {
 
     protected final Logger log =
             LoggerFactory.getLogger(getClass());
+    private WebDriver webDriver;
 
     @BeforeEach
     void setUp() {
         log.info("Starting test");
-        DriverFactory.initDriver();
+        webDriver = DriverFactory.createDriver();
     }
 
     @AfterEach
     void tearDown() {
-        DriverFactory.quitDriver();
-        log.info("Test finished");
+        try {
+            if (webDriver != null) {
+                webDriver.quit();
+            }
+        } finally {
+            webDriver = null;
+            log.info("Test finished");
+        }
     }
 
     protected WebDriver driver() {
-        return DriverFactory.getDriver();
+        if (webDriver == null) {
+            throw new IllegalStateException(
+                    "WebDriver has not been initialized");
+        }
+        return webDriver;
     }
 }

@@ -1,7 +1,6 @@
 package org.example.automation.utils;
 
 import org.example.automation.config.ConfigReader;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -18,9 +17,8 @@ public class WaitUtils {
     private final WebDriverWait wait;
 
     public WaitUtils(WebDriver driver) {
-        int timeout = Integer.parseInt(
-                ConfigReader.get("explicit.wait.seconds")
-        );
+        int timeout = ConfigReader.getPositiveInt(
+                "explicit.wait.seconds", 20);
 
         this.wait = new WebDriverWait(
                 driver,
@@ -40,7 +38,7 @@ public class WaitUtils {
         );
     }
 
-    public void waitForClick(By locator) {
+    public void waitForClickWithInterception(By locator) {
         wait.until(driver -> {
             try {
                 WebElement element = driver.findElement(locator);
@@ -60,29 +58,8 @@ public class WaitUtils {
         });
     }
 
-    public WebElement waitForElementToBePresent(By locator) {
-        return wait.until(
-                ExpectedConditions.presenceOfElementLocated(locator)
-        );
+    public void waitForClick(By locator) {
+        waitForElementToBeClickable(locator).click();
     }
 
-    public boolean waitForElementToDisappear(By locator) {
-        return wait.until(
-                ExpectedConditions.invisibilityOfElementLocated(locator)
-        );
-    }
-
-    public boolean waitForTextToBePresent(By locator, String text) {
-        return wait.until(
-                ExpectedConditions.textToBePresentInElementLocated(
-                        locator, text
-                )
-        );
-    }
-
-    public Alert waitForAlert() {
-        return wait.until(
-                ExpectedConditions.alertIsPresent()
-        );
-    }
 }

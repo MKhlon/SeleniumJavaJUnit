@@ -1,15 +1,11 @@
 package automation.base.steps;
 
 import org.example.automation.pages.BasePage;
+import org.openqa.selenium.WebDriver;
 
 public class BaseSteps extends BasePage {
-    private final BasePage basePage;
 
-    public BaseSteps() {
-        this.basePage = new BasePage();
-    }
-
-    public void clickSubmit() {
-        basePage.clickSubmit();
+    public BaseSteps(WebDriver driver) {
+        super(driver);
     }
 }

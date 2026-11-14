@@ -1,5 +1,6 @@
 package org.example.automation.drivers;
 
+import org.example.automation.config.ConfigReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,28 +20,13 @@ public final class DriverFactory {
 
     private static final Logger log =
             LoggerFactory.getLogger(DriverFactory.class);
-   //ThreadLocal<WebDriver> prepares your framework for parallel execution.
-   // Each thread has its own driver reference, preventing concurrent tests
-   // from sharing one browser session.
-    private static final ThreadLocal<WebDriver> DRIVER =
-            new ThreadLocal<>();
-
     private DriverFactory() {
     }
 
-    public static void initDriver() {
-        if (DRIVER.get() != null) {
-            throw new IllegalStateException(
-                    "WebDriver already initialized for this thread");
-        }
-
-        String browser = System.getProperty(
-                "browser", "chrome"
-        ).toLowerCase(Locale.ROOT);
-
-        boolean headless = Boolean.parseBoolean(
-                System.getProperty("headless", "false")
-        );
+    public static WebDriver createDriver() {
+        String browser = ConfigReader.get("browser", "chrome")
+                .toLowerCase(Locale.ROOT);
+        boolean headless = ConfigReader.getBoolean("headless", false);
 
         log.info("Initializing browser: {}", browser);
 
@@ -59,15 +45,21 @@ public final class DriverFactory {
             driver.manage().timeouts()
                     .implicitlyWait(Duration.ZERO);
 
-            if (!headless) {
+            if (headless) {
+                driver.manage().window().setSize(
+                        new org.openqa.selenium.Dimension(1920, 1080));
+            } else {
                 driver.manage().window().maximize();
             }
 
-            DRIVER.set(driver);
-
             log.info("WebDriver initialized successfully");
+            return driver;
         } catch (RuntimeException e) {
-            driver.quit();
+            try {
+                driver.quit();
+            } catch (RuntimeException cleanupFailure) {
+                e.addSuppressed(cleanupFailure);
+            }
             throw e;
         }
     }
@@ -86,9 +78,9 @@ public final class DriverFactory {
     private static WebDriver createChromium(boolean headless) {
         ChromeOptions options = new ChromeOptions();
 
-        String binary = System.getProperty("chromium.binary");
+        String binary = ConfigReader.getOptional("chromium.binary");
 
-        if (binary == null || binary.isBlank()) {
+        if (binary == null) {
             throw new IllegalArgumentException(
                     "Specify Chromium binary using -Dchromium.binary"
             );
@@ -122,14 +114,7 @@ public final class DriverFactory {
             options.addArguments("-headless");
         }
 
-        WebDriver driver = new FirefoxDriver(options);
-
-        if (headless) {
-            driver.manage().window()
-                    .setSize(new org.openqa.selenium.Dimension(1920, 1080));
-        }
-
-        return driver;
+        return new FirefoxDriver(options);
     }
 
     private static WebDriver createSafari(boolean headless) {
@@ -141,27 +126,4 @@ public final class DriverFactory {
         return new SafariDriver();
     }
 
-    public static WebDriver getDriver() {
-        WebDriver driver = DRIVER.get();
-
-        if (driver == null) {
-            throw new IllegalStateException(
-                    "WebDriver has not been initialized");
-        }
-
-        return driver;
-    }
-
-    public static void quitDriver() {
-        WebDriver driver = DRIVER.get();
-
-        try {
-            if (driver != null) {
-                driver.quit();
-                log.info("WebDriver session closed");
-            }
-        } finally {
-            DRIVER.remove();
-        }
-    }
 }

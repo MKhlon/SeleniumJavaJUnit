@@ -12,8 +12,8 @@ public class ButtonsComponentTest extends BaseTest {
 
    @BeforeEach
    void initializeSteps() {
-      buttonsComponentSteps = new ButtonsComponentSteps();
-      navigateSteps = new NavigateSteps();
+      buttonsComponentSteps = new ButtonsComponentSteps(driver());
+      navigateSteps = new NavigateSteps(driver());
       navigateSteps.openHomePage();
    }
 
@@ -24,6 +24,7 @@ public class ButtonsComponentTest extends BaseTest {
       navigateSteps.navigateToButtonsComponent();
       buttonsComponentSteps.performDoubleClickButton();
       //Then
-      buttonsComponentSteps.verifyDoubleClickButtonMessage("You have done a double click");
+      buttonsComponentSteps.verifyDoubleClickButtonMessage(
+              "You have done a double click");
    }
 }

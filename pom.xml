@@ -17,7 +17,6 @@
         <allure.version>3.0.1</allure.version>
         <log4j.version>2.26.1</log4j.version>
         <slf4j.version>2.0.17</slf4j.version>
-        <lombok.version>1.18.42</lombok.version>
         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
     </properties>
 
@@ -72,12 +71,6 @@
             <version>${log4j.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -88,13 +81,6 @@
                 <version>3.14.1</version>
                 <configuration>
                     <release>${maven.compiler.release}</release>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>1.18.42</version>
-                        </path>
-                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
             <plugin>
