@@ -1,10 +1,11 @@
-package org.example.automation.pages;
+package org.example.automation.pages.elements;
 
 
 import lombok.Data;
+import org.example.automation.pages.BasePage;
 import org.openqa.selenium.By;
 @Data
-public class ButtonsPage extends BasePage {
+public class ButtonsComponent extends BasePage {
    //Locators
    private final By clickDynamicButton = By.id("2Chhf");
    private final By doubleClickButton = By.id("doubleClickBtn");

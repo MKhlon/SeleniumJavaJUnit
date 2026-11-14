@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+    <Properties>
+        <Property name="LOG_DIR">target/logs</Property>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
+        </Property>
+    </Properties>
+
+    <Appenders>
+
+        <!-- Console logging -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <!-- Rolling file logging -->
+        <RollingFile
+                name="RollingFile"
+                fileName="${LOG_DIR}/automation.log"
+                filePattern="${LOG_DIR}/automation-%d{yyyy-MM-dd}-%i.log.gz">
+
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+
+            <Policies>
+                <!-- Rotate when file reaches 10 MB -->
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+
+                <!-- Rotate daily -->
+                <TimeBasedTriggeringPolicy interval="1"/>
+            </Policies>
+
+            <!-- Keep up to 10 archived files -->
+            <DefaultRolloverStrategy max="10"/>
+
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+
+        <!-- Your automation framework -->
+        <Logger name="com.example.automation"
+                level="debug"
+                additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Logger>
+
+        <!-- Reduce Selenium internal logging -->
+        <Logger name="org.openqa.selenium" level="warn"/>
+
+        <!-- Reduce HTTP client logging -->
+        <Logger name="org.apache.hc.client5" level="warn"/>
+
+        <!-- Default logging -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>

@@ -1,22 +1,23 @@
 package automation.base.steps;
 
-import org.example.automation.pages.ButtonsPage;
+import org.example.automation.pages.BasePage;
+import org.example.automation.pages.elements.ElementsPage;
 import org.junit.jupiter.api.Assertions;
 
-public class ButtonsPageSteps extends BasePage {
+public class ButtonsComponentSteps extends BaseSteps {
 
-    private final ButtonsPage buttonsPage;
+    private final ElementsPage elementsPage;
 
-    public ButtonsPageSteps(){
-        this.buttonsPage = new ButtonsPage();
+    public ButtonsComponentSteps(){
+        this.elementsPage = new ElementsPage();
     }
 
     public void performDoubleClickButton() {
-        buttonsPage.clickDoubleClickButton();
+        elementsPage.getButtonsComponent().clickDoubleClickButton();
     }
 
     public void verifyDoubleClickButtonMessage(String expectedMessage) {
-        Assertions.assertEquals(buttonsPage.getDoubleClickButtonMessage(),
+        Assertions.assertEquals(elementsPage.getButtonsComponent().getDoubleClickButtonMessage(),
                 expectedMessage, "Message is not as expected");
     }
 }

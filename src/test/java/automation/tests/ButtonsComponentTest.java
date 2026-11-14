@@ -1,18 +1,18 @@
 package automation.tests;
 
-import automation.base.steps.ButtonsPageSteps;
+import automation.base.steps.ButtonsComponentSteps;
 import automation.base.steps.NavigateSteps;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ButtonsTest extends BaseTest {
+public class ButtonsComponentTest extends BaseTest {
 
-   private ButtonsPageSteps buttonsPageSteps;
+   private ButtonsComponentSteps buttonsComponentSteps;
    private NavigateSteps navigateSteps;
 
    @BeforeEach
    void initializeSteps() {
-      buttonsPageSteps = new ButtonsPageSteps();
+      buttonsComponentSteps = new ButtonsComponentSteps();
       navigateSteps = new NavigateSteps();
       navigateSteps.openHomePage();
    }
@@ -21,9 +21,9 @@ public class ButtonsTest extends BaseTest {
    public void doubleClickButtonTest() {
       //When
       navigateSteps.navigateToElementsPage();
-      navigateSteps.navigateToButtonsPage();
-      buttonsPageSteps.performDoubleClickButton();
+      navigateSteps.navigateToButtonsComponent();
+      buttonsComponentSteps.performDoubleClickButton();
       //Then
-      buttonsPageSteps.verifyDoubleClickButtonMessage("You have done a double click");
+      buttonsComponentSteps.verifyDoubleClickButtonMessage("You have done a double click");
    }
 }
