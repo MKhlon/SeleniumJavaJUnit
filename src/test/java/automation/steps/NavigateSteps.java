@@ -3,6 +3,7 @@ package automation.steps;
 import automation.steps.elements.ButtonsSteps;
 import automation.steps.elements.CheckBoxSteps;
 import automation.steps.elements.TextBoxSteps;
+import automation.steps.elements.WebTablesSteps;
 import org.example.automation.config.ConfigReader;
 
 import org.openqa.selenium.By;
@@ -15,6 +16,7 @@ public class NavigateSteps extends BaseSteps {
             By.cssSelector("a[href='/buttons']");
     private final By textBoxLink = By.cssSelector("a[href='/text-box']");
     private final By checkBoxLink = By.cssSelector("a[href='/checkbox']");
+    private final By webTablesLink = By.cssSelector("a[href='/webtables']");
 
     public NavigateSteps(WebDriver driver) {
         super(driver);
@@ -42,5 +44,10 @@ public class NavigateSteps extends BaseSteps {
     public ButtonsSteps navigateToButtonsComponent() {
         click(buttonsLink);
         return new ButtonsSteps(driver);
+    }
+
+    public WebTablesSteps navigateToWebTablesComponent() {
+        click(webTablesLink);
+        return new WebTablesSteps(driver);
     }
 }
