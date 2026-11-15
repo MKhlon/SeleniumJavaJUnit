@@ -17,19 +17,19 @@ public class TextBoxSteps extends BaseSteps {
     }
 
     public TextBoxSteps enterFullName(String fullName) {
-        elementsPage.getTextBoxComponent().setFullName(fullName);
+        elementsPage.getTextBoxPage().setFullName(fullName);
         return this;
     }
 
     public TextBoxSteps enterEmail(String email) {
-        elementsPage.getTextBoxComponent().setEmail(email);
+        elementsPage.getTextBoxPage().setEmail(email);
         return this;
     }
 
     public void verifySubmittedDetails(String fullName, String email) {
         Assertions.assertEquals(
                 List.of("Name:" + fullName, "Email:" + email),
-                elementsPage.getTextBoxComponent().getOutputLines(),
+                elementsPage.getTextBoxPage().getOutputLines(),
                 "Submitted details are not as expected");
     }
 }

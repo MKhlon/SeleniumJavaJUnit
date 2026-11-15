@@ -20,7 +20,7 @@ public class ButtonsTest extends BaseTest {
       //When
       navigateSteps
             .navigateToElementsPage()
-            .navigateToButtonsComponent()
+            .navigateToButtonsPage()
             .performDoubleClickButton()
       //Then
             .verifyDoubleClickButtonMessage(

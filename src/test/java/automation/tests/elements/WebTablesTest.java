@@ -28,7 +28,7 @@ public class WebTablesTest extends BaseTest {
         //When
         navigateSteps
                 .navigateToElementsPage()
-                .navigateToWebTablesComponent()
+                .navigateToWebTablesPage()
                 .editRecord()
                 .setFirstName(firstName)
                 .setLastName(lastName)

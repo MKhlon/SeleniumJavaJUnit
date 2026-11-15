@@ -15,14 +15,14 @@ public class ButtonsSteps extends BaseSteps {
     }
 
     public ButtonsSteps performDoubleClickButton() {
-        elementsPage.getButtonsComponent().clickDoubleClickButton();
+        elementsPage.getButtonsPage().clickDoubleClickButton();
         return this;
     }
 
     public void verifyDoubleClickButtonMessage(String expectedMessage) {
         Assertions.assertEquals(
                 expectedMessage,
-                elementsPage.getButtonsComponent().getDoubleClickButtonMessage(),
+                elementsPage.getButtonsPage().getDoubleClickButtonMessage(),
                 "Message is not as expected");
     }
 }

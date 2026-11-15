@@ -3,6 +3,7 @@ package automation.steps;
 import automation.steps.elements.ButtonsSteps;
 import automation.steps.elements.CheckBoxSteps;
 import automation.steps.elements.TextBoxSteps;
+import automation.steps.elements.UploadDownloadSteps;
 import automation.steps.elements.WebTablesSteps;
 import org.example.automation.config.ConfigReader;
 
@@ -17,6 +18,7 @@ public class NavigateSteps extends BaseSteps {
     private final By textBoxLink = By.cssSelector("a[href='/text-box']");
     private final By checkBoxLink = By.cssSelector("a[href='/checkbox']");
     private final By webTablesLink = By.cssSelector("a[href='/webtables']");
+    private final By uploadAndDownloadLink = By.cssSelector("a[href='/upload-download']");
 
     public NavigateSteps(WebDriver driver) {
         super(driver);
@@ -31,23 +33,28 @@ public class NavigateSteps extends BaseSteps {
         return new NavigateSteps(driver);
     }
 
-    public TextBoxSteps navigateToTextBoxComponent() {
+    public TextBoxSteps navigateToTextBoxPage() {
         click(textBoxLink);
         return new TextBoxSteps(driver);
     }
 
-    public CheckBoxSteps navigateToCheckBoxComponent() {
+    public CheckBoxSteps navigateToCheckBoxPage() {
         click(checkBoxLink);
         return new CheckBoxSteps(driver);
     }
 
-    public ButtonsSteps navigateToButtonsComponent() {
+    public ButtonsSteps navigateToButtonsPage() {
         click(buttonsLink);
         return new ButtonsSteps(driver);
     }
 
-    public WebTablesSteps navigateToWebTablesComponent() {
+    public WebTablesSteps navigateToWebTablesPage() {
         click(webTablesLink);
         return new WebTablesSteps(driver);
+    }
+
+    public UploadDownloadSteps navigateToUploadDownloadPage() {
+        clickWithInterception(uploadAndDownloadLink);
+        return new UploadDownloadSteps(driver);
     }
 }

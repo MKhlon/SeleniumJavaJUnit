@@ -20,7 +20,7 @@ public class CheckBoxTest extends BaseTest {
     public void checkBoxTest() {
         //When
         navigateSteps.navigateToElementsPage()
-                .navigateToCheckBoxComponent()
+                .navigateToCheckBoxPage()
                 .clickExpandHomeTree()
                 .clickExpandDesktopTree()
                 .clickNotesCheckbox()

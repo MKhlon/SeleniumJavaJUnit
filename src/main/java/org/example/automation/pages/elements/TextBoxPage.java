@@ -7,13 +7,13 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
-public class TextBoxComponent extends BasePage {
+public class TextBoxPage extends BasePage {
     private final By fullNameText = By.id("userName");
     private final By emailText = By.id("userEmail");
     private final By outputContainer = By.id("output");
     private final By outputLines = By.cssSelector("#output p");
 
-    public TextBoxComponent(WebDriver driver) {
+    public TextBoxPage(WebDriver driver) {
         super(driver);
     }
 

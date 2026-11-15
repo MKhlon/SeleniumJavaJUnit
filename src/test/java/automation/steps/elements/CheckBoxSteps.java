@@ -16,22 +16,22 @@ public class CheckBoxSteps extends BaseSteps {
     }
 
     public CheckBoxSteps clickExpandHomeTree() {
-        elementsPage.getCheckBoxComponent().clickExpandHomeTree();
+        elementsPage.getCheckBoxPage().clickExpandHomeTree();
         return this;
     }
 
     public CheckBoxSteps clickExpandDesktopTree() {
-        elementsPage.getCheckBoxComponent().clickExpandDesktopTree();
+        elementsPage.getCheckBoxPage().clickExpandDesktopTree();
         return this;
     }
 
     public CheckBoxSteps clickNotesCheckbox() {
-        elementsPage.getCheckBoxComponent().clickNotesCheckbox();
+        elementsPage.getCheckBoxPage().clickNotesCheckbox();
         return this;
     }
 
     public void verifyResultMessages(List<String> expectedMessages) {
-        List<String> actualMessages = elementsPage.getCheckBoxComponent().getResultMessages();
+        List<String> actualMessages = elementsPage.getCheckBoxPage().getResultMessages();
         Assertions.assertEquals(
                 expectedMessages,
                 actualMessages,

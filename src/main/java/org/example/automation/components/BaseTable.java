@@ -12,20 +12,14 @@ public abstract class BaseTable<T extends BaseTable<T>> extends BasePage {
     //self-referential generic pattern (CRTP-F-bounded polymorphism) to allow base-class methods return
     //the concrete subclass type instead of just BaseTable
 
-    private final T t;
-
     public BaseTable(WebDriver driver) {
         super(driver);
-        t = (T) this;
     }
 
-    //return element containing table html element
     protected abstract By getTableElement();
 
-    //return list of column names
     protected abstract List<String> getColumns();
 
-    //get index of name column. Index starts at 1, like td[1]...
     public int getColumnIndex(String columnName) {
         var column = getColumns().stream()
                 .filter(name -> name.equalsIgnoreCase(columnName))

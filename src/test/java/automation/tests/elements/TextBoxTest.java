@@ -25,7 +25,7 @@ public class TextBoxTest extends BaseTest {
 
        //When
        navigateSteps.navigateToElementsPage()
-               .navigateToTextBoxComponent()
+               .navigateToTextBoxPage()
                .enterFullName(fullName)
                .enterEmail(email)
                .clickSubmit();

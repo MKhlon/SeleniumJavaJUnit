@@ -6,16 +6,18 @@ import org.openqa.selenium.WebDriver;
 
 @Getter
 public class ElementsPage extends BasePage {
-   private final TextBoxComponent textBoxComponent;
-   private final CheckBoxComponent checkBoxComponent;
-   private final ButtonsComponent buttonsComponent;
-   private final WebTablesComponent webTablesComponent;
+   private final TextBoxPage textBoxPage;
+   private final CheckBoxPage checkBoxPage;
+   private final ButtonsPage buttonsPage;
+   private final WebTablesPage webTablesPage;
+   private final UploadDownloadPage uploadDownloadComponent;
 
    public ElementsPage(WebDriver driver) {
        super(driver);
-       this.textBoxComponent = new TextBoxComponent(driver);
-       this.checkBoxComponent = new CheckBoxComponent(driver);
-       this.buttonsComponent = new ButtonsComponent(driver);
-       this.webTablesComponent = new WebTablesComponent(driver);
+       this.textBoxPage = new TextBoxPage(driver);
+       this.checkBoxPage = new CheckBoxPage(driver);
+       this.buttonsPage = new ButtonsPage(driver);
+       this.webTablesPage = new WebTablesPage(driver);
+       this.uploadDownloadComponent = new UploadDownloadPage(driver);
    }
 }

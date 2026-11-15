@@ -17,13 +17,13 @@ public class WebTablesSteps extends BaseSteps {
     }
 
     public RegistrationFormComponent editRecord() {
-        return elementsPage.getWebTablesComponent().clickEdit();
+        return elementsPage.getWebTablesPage().clickEdit();
     }
 
     public void verifyRecordUpdated(String firstName, String lastName, int rowIndex) {
-        var actualFirstName = elementsPage.getWebTablesComponent().getWebTable().getCellText(
+        var actualFirstName = elementsPage.getWebTablesPage().getWebTable().getCellText(
                 WebTable.FIRST_NAME, rowIndex);
-        var actualLastName = elementsPage.getWebTablesComponent().getWebTable().getCellText(
+        var actualLastName = elementsPage.getWebTablesPage().getWebTable().getCellText(
                 WebTable.LAST_NAME, rowIndex);
         SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(actualFirstName)

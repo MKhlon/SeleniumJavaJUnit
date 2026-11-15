@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class CheckBoxComponent extends BasePage {
+public class CheckBoxPage extends BasePage {
 
     private final By homeTreeExpander = By.xpath(
             "//span[@title='Home']/preceding-sibling::span[contains(@class,'rc-tree-switcher')]");
@@ -19,7 +19,7 @@ public class CheckBoxComponent extends BasePage {
     private final By resultOutput = By.id("result");
     private final By resultSpans = By.cssSelector("#result > span");
 
-    public CheckBoxComponent(WebDriver driver) {
+    public CheckBoxPage(WebDriver driver) {
         super(driver);
     }
 

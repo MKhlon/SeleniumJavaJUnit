@@ -62,4 +62,9 @@ public class WaitUtils {
         waitForElementToBeClickable(locator).click();
     }
 
+    public WebElement waitForElementToBePresent(By locator) {
+        return wait.until(
+                ExpectedConditions.presenceOfElementLocated(locator)
+        );
+    }
 }

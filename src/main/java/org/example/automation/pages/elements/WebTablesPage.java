@@ -8,12 +8,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Getter
-public class WebTablesComponent extends BasePage {
+public class WebTablesPage extends BasePage {
     private final RegistrationFormComponent registrationFormComponent;
     private final By editButton = By.id("edit-record-1");
     private final WebTable webTable;
 
-    public WebTablesComponent(WebDriver driver) {
+    public WebTablesPage(WebDriver driver) {
         super(driver);
         this.registrationFormComponent = new RegistrationFormComponent(driver);
         this.webTable = new WebTable(driver);
